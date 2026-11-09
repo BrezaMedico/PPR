@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import SensorCards from "./components/SensorCards";
 import SensorData from "./components/SensorData";
 import Loading from "./components/Loading";
+import DeviceStatus from "./components/DeviceStatus";
+import DeviceStatusSkeleton from "./components/DeviceStatusSkeleton";
 
 export default function Home() {
   return (
@@ -11,7 +13,7 @@ export default function Home() {
       <Header />
 
       <div className="mx-auto max-w-7xl px-6 py-10">
-        {/* HERO */}
+        {/* HERO (STATIC SHELL) */}
         <section className="mb-10">
           <p className="mb-3 text-sm font-medium uppercase tracking-[0.3em] text-cyan-400">
             IoT Dashboard
@@ -27,7 +29,7 @@ export default function Home() {
           </p>
         </section>
 
-        {/* STATIC SENSOR CARDS */}
+        {/* STATIC SENSOR CARDS (STATIC SHELL) */}
         <section>
           <div className="mb-5">
             <h3 className="text-xl font-semibold">
@@ -35,21 +37,28 @@ export default function Home() {
             </h3>
 
             <p className="mt-1 text-sm text-gray-500">
-              Informasi monitoring perangkat
+              Informasi monitoring perangkat (4 Sensor)
             </p>
           </div>
 
           <SensorCards />
         </section>
 
-        {/* DYNAMIC DATA */}
+        {/* DYNAMIC HOLE 1: SENSOR DATA */}
         <section className="mt-8">
           <Suspense fallback={<Loading />}>
             <SensorData />
           </Suspense>
         </section>
 
-        {/* ACTIVITY */}
+        {/* DYNAMIC HOLE 2: DEVICE STATUS */}
+        <section className="mt-8">
+          <Suspense fallback={<DeviceStatusSkeleton />}>
+            <DeviceStatus />
+          </Suspense>
+        </section>
+
+        {/* ACTIVITY (STATIC SHELL) */}
         <section className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
           <h3 className="text-lg font-semibold text-white">
             Aktivitas Terbaru
@@ -101,7 +110,7 @@ export default function Home() {
         </section>
       </div>
 
-      {/* FOOTER */}
+      {/* FOOTER (STATIC SHELL) */}
       <footer className="border-t border-white/10 py-6 text-center">
         <p className="text-xs text-gray-600">
           IoT Monitoring Dashboard • Next.js + PPR

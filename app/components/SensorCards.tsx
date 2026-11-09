@@ -20,11 +20,18 @@ const sensors = [
     icon: "📏",
     description: "Jarak objek",
   },
+  {
+    name: "KELEMBAPAN",
+    value: "62",
+    unit: "%",
+    icon: "💧",
+    description: "Kelembapan udara",
+  },
 ];
 
 export default function SensorCards() {
   return (
-    <section className="grid gap-5 md:grid-cols-3">
+    <section className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {sensors.map((sensor) => (
         <div
           key={sensor.name}

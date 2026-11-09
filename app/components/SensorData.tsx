@@ -1,13 +1,23 @@
+import { connection } from "next/server";
+
 async function getSensorData() {
-  // Simulasi pengambilan data dari API / database
+  // Menandai request-time boundary secara eksplisit
+  await connection();
+
+  // Simulasi latensi streaming data sensor
   await new Promise((resolve) => {
-    setTimeout(resolve, 10000);
+    setTimeout(resolve, 5000);
   });
 
+  // Nilai sensor dinamis berubah setiap request (Challenge 4)
+  const tempRandom = +(27.0 + Math.random() * 3.0).toFixed(1);
+  const lightRandom = Math.floor(70 + Math.random() * 20);
+  const distanceRandom = Math.floor(100 + Math.random() * 40);
+
   return {
-    temperature: 28.5,
-    light: 75,
-    distance: 120,
+    temperature: tempRandom,
+    light: lightRandom,
+    distance: distanceRandom,
     status: "Normal",
   };
 }
@@ -67,7 +77,7 @@ export default async function SensorData() {
 
       <div className="mt-5 border-t border-white/10 pt-4">
         <p className="text-xs text-gray-500">
-          ✓ Data sensor berhasil diperbarui
+          ✓ Data sensor berhasil diperbarui secara streaming
         </p>
       </div>
     </div>
